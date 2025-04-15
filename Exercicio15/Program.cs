@@ -7,7 +7,6 @@ namespace Exercicio15
     {
         static void Main(string[] args)
         {
-            // Criando a pilha para o estacionamento, com capacidade para 5 carros
             Stack<string> estacionamento = new Stack<string>(5);
 
             // Adicionando carros ao estacionamento

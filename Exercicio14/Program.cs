@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Exercicio14
 {
-    // Classe que representa um item na fila com um valor e sua prioridade
+    // Classe do item com prioridade
     public class ItemComPrioridade<T>
     {
         public T Valor { get; set; }
@@ -17,7 +17,7 @@ namespace Exercicio14
         }
     }
 
-    // Implementação de uma fila de prioridade utilizando Queue<T>
+    // Criação de uma fila de tipo t que considera prioridade
     public class FilaDePrioridade<T>
     {
         private Queue<ItemComPrioridade<T>> fila;
@@ -27,17 +27,17 @@ namespace Exercicio14
             fila = new Queue<ItemComPrioridade<T>>();
         }
 
-        // Adiciona um item à fila com a prioridade
+        // Método Enqueue
         public void Enqueue(T item, int prioridade)
         {
             var itemComPrioridade = new ItemComPrioridade<T>(item, prioridade);
-            // Enfileira o item de maneira que o de maior prioridade seja atendido primeiro
+            // Enfileira de maneira que quanto maior a prioridade, primeiro ele estará na lista
             var listaOrdenada = fila.OrderByDescending(x => x.Prioridade).ToList();
-            listaOrdenada.Add(itemComPrioridade); // Adiciona o novo item à lista ordenada
-            fila = new Queue<ItemComPrioridade<T>>(listaOrdenada); // Atualiza a fila com a nova ordem
+            listaOrdenada.Add(itemComPrioridade); 
+            fila = new Queue<ItemComPrioridade<T>>(listaOrdenada); 
         }
 
-        // Remove e retorna o item de maior prioridade da fila
+        // Método Dequeue
         public T Dequeue()
         {
             if (fila.Count == 0)
@@ -45,11 +45,11 @@ namespace Exercicio14
                 throw new InvalidOperationException("Fila vazia!");
             }
 
-            var item = fila.Dequeue(); // O primeiro item é o de maior prioridade
+            var item = fila.Dequeue(); // Remove o primeiro item que é o de maior prioridade
             return item.Valor;
         }
 
-        // Retorna o item de maior prioridade sem removê-lo
+        // Método Peek
         public T Peek()
         {
             if (fila.Count == 0)
@@ -57,10 +57,10 @@ namespace Exercicio14
                 throw new InvalidOperationException("Fila vazia!");
             }
 
-            return fila.Peek().Valor; // Retorna o item da frente
+            return fila.Peek().Valor; // Retorna o primeiro item da fila, já tratado
         }
 
-        // Retorna a quantidade de itens na fila
+        // Count
         public int Count => fila.Count;
 
         // Verifica se a fila está vazia
@@ -85,7 +85,7 @@ namespace Exercicio14
                 Console.Write($"Digite o item #{i + 1}: ");
                 string item = Console.ReadLine();
 
-                Console.Write("Digite a prioridade (número inteiro): ");
+                Console.Write("Digite a prioridade (número inteiro), quanto maior o número, maior a prioridade: ");
                 int prioridade = int.Parse(Console.ReadLine());
 
                 fila.Enqueue(item, prioridade);
@@ -110,6 +110,7 @@ namespace Exercicio14
             {
                 Console.WriteLine(ex.Message); // Saída: Fila vazia!
             }
+            Console.ReadKey();
         }
     }
 }
