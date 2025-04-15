@@ -4,4 +4,8 @@
 - ✔ Pilhas
 - ✔ Filas
 - ✔ Fila Circular
-- ✔ Pilas e filas manuais
+- ✔ Pilhas e filas manuais
+- ✔ Histórico de navageação
+- ✔ Defazer e refazer
+- ✔ Simulação de estacionamento
+- ✔ Fila com prioridades
